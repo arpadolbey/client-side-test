@@ -60,6 +60,12 @@ Example response: -
 
 To make the most of our inventory we refresh ads **every 60 seconds**. Your code should make a new request to all the associated SSPs every 60 seconds for the next ad to show.
 
+### Tracking
+
+We need to keep a ledger of all our winning bids - we'll bill our clients for running these ads and do a comparision with their ad-serving stats at a later date.
+
+Create a very simple tracking server in ```server.js``` that will log these tracking requests. This should be no more than ~20-30 lines of code.
+
 ### Debugging
 
 Think about using the React library that has been made available to create a simple, visual debug overlay or if you are pressed for time to create a Logging class in the project and use ```console.table``` with ```console.log``` to output some helpful debug information.
