@@ -15,6 +15,12 @@ You should **not** add any packages to ```package.json``` to complete this task.
 Once you are finished, please add your notes towards the bottom of this ```README.md``` file.
 This should include thoughts, concerns, limitations, risks, issues of what has been submitted, specifically around moving this code to production.
 
+### Setup: -
+
+```yarn install``` - install deps.
+
+```node server``` - run the development and test bid server.
+
 ### SSP - Making Bid Requests
 
 To get bids on the placement, you will need to make multiple requests to SSPs. A placement should have a *bid group* associated with it. This model has not been provided to you.
