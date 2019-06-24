@@ -1,0 +1,57 @@
+{
+  "name": "ad-manager",
+  "version": "0.1.0",
+  "description": "Ad Manager",
+  "scripts": {
+    "build-dev": "webpack --config webpack.dev.config.js"
+  },
+  "dependencies": {
+    "@types/node": "^10.14.4",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.4",
+
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+
+    "ts-node": "^8.1.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "sinon": "^7.3.1",
+    "sinon-chai": "^3.3.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/sinon": "^7.0.10",
+    "@types/sinon-chai": "^3.2.2",
+    "karma": "^4.0.1",
+    "karma-cli": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-chai": "^0.1.0",
+    "karma-typescript": "^4.0.0",
+    "karma-sinon": "^1.0.5",
+    "karma-sinon-chai": "^2.0.2",
+    "karma-coverage": "^1.1.2",
+    "colors": "^1.3.3",
+
+    "typescript": "^3.4.5",
+    "ts-loader": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1",
+
+    "express": "^4.16.4"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Venatus/client-side-test"
+  },
+  "keywords": [
+    "client side test"
+  ],
+  "author": "Chris Beck",
+  "contributors": [
+    "Chris Beck <chrisb@venatusmedia.com> (http://venatusmedia.com)"
+  ]
+}

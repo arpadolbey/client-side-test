@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "checkJs" : false,
+    "alwaysStrict": true,
+    "experimentalDecorators": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "lib": ["es2015", "dom"]
+  },
+  "include": [
+    "src/AdManager.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build-dev",
+    "build-live"
+  ]
+}

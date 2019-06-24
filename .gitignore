@@ -1,0 +1,7 @@
+node_modules/
+build-dev/
+.idea*
+*.DS_STORE
+coverage/
+package-lock.json
+yarn-error.log
