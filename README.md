@@ -18,16 +18,47 @@ This should include thoughts, concerns, limitations, risks, issues of what has b
 ### SSP - Making Bid Requests
 
 To get bids on the placement, you will need to make multiple requests to SSPs. A placement should have a *bid group* associated with it. This model has not been provided to you.
-When making bids, if an SSP takes longer than 1000ms to respond you should ignore the response and continue with the bids that do come back in time.
+When making bids, if an SSP takes longer than **1000ms** to respond you should ignore the response and continue with the bids that do come back in time.
 
 You should make your own XHR wrapper class to handle requests to SSPs. This class should be placed in ```components``` directory.
 
 Once bids have been returned for the placement(s), you should use ```BidReponse.ts``` to work out which bid to use. As noted in the class, if there are *deals* present, this should win regardless of non-deal values.
 One of the tests should make sure this logic is correct.
 
+Example cURL request: -
+
+```
+curl -X POST \
+  http://localhost:8081 \
+  -H 'Content-Type: application/json' \
+  -H 'SSP: ssp-a' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"adUnitCode": "abc123",
+	"sizes": [[300,250],[300,600]]
+}'
+```
+
+Example response: -
+
+```
+{
+    "adUnitCode": "abc123",
+    "creativeId": "3099-f565-dd7f-52d8-801d",
+    "ssp": "ssp-a",
+    "size": [
+        300,
+        250
+    ],
+    "cpm": 2.2,
+    "ad": "<div id=\"3099-f565-dd7f-52d8-801d\" style=\"width: 300px; height:250px; background:#EEEEEE\">\n                <script>document.querySelector(\"#3099-f565-dd7f-52d8-801d\").innerHTML(\"3099-f565-dd7f-52d8-801d @ 300x250 @ 2.20\")</script>\n            </div>",
+    "isDeal": false
+}
+```
+
 ### Refreshing Placements
 
-To make the most of our inventory we refresh ads every 60 seconds. Your code should make a new request to all the associated SSPs every 60 seconds for the next ad to show.
+To make the most of our inventory we refresh ads **every 60 seconds**. Your code should make a new request to all the associated SSPs every 60 seconds for the next ad to show.
 
 ### Debugging
 
