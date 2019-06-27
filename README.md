@@ -1,4 +1,4 @@
-## Venatus Client Test
+## Client Test
 
 Estimated time to complete - 1.5 - 3 hours - depending on existing domain knowledge.
 
@@ -8,27 +8,27 @@ We have created a simple ad-server that will bid on ad-requests. A test page has
 <div class="placement-container" data-sizes="970x250,970x90,728x90" data-ssps="sspa,sspb,sspf"></div>
 ```
 
-* ```data-sizes``` - all the possible ad sizes this unit can take. all should be bid on.
-* ```data-ssps``` - all the SSPs that should be requested for bids on this placement.
+- `data-sizes` - all the possible ad sizes this unit can take. all should be bid on.
+- `data-ssps` - all the SSPs that should be requested for bids on this placement.
 
-You should **not** add any packages to ```package.json``` to complete this task. This code is simplified from what would be used in production.
-Once you are finished, please add your notes towards the bottom of this ```README.md``` file.
+You should **not** add any packages to `package.json` to complete this task. This code is simplified from what would be used in production.
+Once you are finished, please add your notes towards the bottom of this `README.md` file.
 This should include thoughts, concerns, limitations, risks, issues of what has been submitted, specifically around moving this code to production.
 
 ### Setup: -
 
-```yarn install``` - install deps.
+`yarn install` - install deps.
 
-```node server``` - run the development and test bid server.
+`node server` - run the development and test bid server.
 
 ### SSP - Making Bid Requests
 
-To get bids on the placement, you will need to make multiple requests to SSPs. A placement should have a *bid group* associated with it. This model has not been provided to you.
+To get bids on the placement, you will need to make multiple requests to SSPs. A placement should have a _bid group_ associated with it. This model has not been provided to you.
 When making bids, if an SSP takes longer than **1000ms** to respond you should ignore the response and continue with the bids that do come back in time.
 
-You should make your own XHR wrapper class to handle requests to SSPs. This class should be placed in ```components``` directory.
+You should make your own XHR wrapper class to handle requests to SSPs. This class should be placed in `components` directory.
 
-Once bids have been returned for the placement(s), you should use ```BidReponse.ts``` to work out which bid to use. As noted in the class, if there are *deals* present, this should win regardless of non-deal values.
+Once bids have been returned for the placement(s), you should use `BidReponse.ts` to work out which bid to use. As noted in the class, if there are _deals_ present, this should win regardless of non-deal values.
 One of the tests should make sure this logic is correct.
 
 Example cURL request: -
@@ -70,17 +70,18 @@ To make the most of our inventory we refresh ads **every 60 seconds**. Your code
 
 We need to keep a ledger of all our winning bids - we'll bill our clients for running these ads and do a comparision with their ad-serving stats at a later date.
 
-Create a very simple tracking server in ```server.js``` that will log these tracking requests. This should be no more than ~20-30 lines of code.
+Create a very simple tracking server in `server.js` that will log these tracking requests. This should be no more than ~20-30 lines of code.
 
 ### Debugging
 
-Think about using the React library that has been made available to create a simple, visual debug overlay or if you are pressed for time to create a Logging class in the project and use ```console.table``` with ```console.log``` to output some helpful debug information.
+Think about using the React library that has been made available to create a simple, visual debug overlay or if you are pressed for time to create a Logging class in the project and use `console.table` with `console.log` to output some helpful debug information.
 
 ### Testing
 
-Internally we use Karma, Mocha, Chai and Sinon. We have added these packages for you. Only a few meaningful tests are required. You should aim to spend no more than 30 minutes to configure Karam and add a few tests.
-Please add your tests in a ```tests``` directory.
+Internally we use Karma, Mocha, Chai and Sinon. We have added these packages for you. Only a few meaningful tests are required. You should aim to spend no more than 30 minutes to configure Karma and add a few tests.
+Please add your tests in a `tests` directory.
 
 ## Your Notes
 
-...
+Issues: CORS, I had to add the 'cors' package.
+Concerns: If the server max timeout is to large in the given case it is 3000, it might throw all the ads away because they don't return back in time. In this case the previous ad might stay in the place of the 'new one'.
