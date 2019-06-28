@@ -1,67 +1,66 @@
-var webpackConfig = require('./webpack.dev.config');
-
-webpackConfig.module.rules = [
-  {
-    test: /\.ts$/,
-    exclude: /node_modules/,
-    loader: 'awesome-typescript-loader',
-    query: {
-      compilerOptions: {
-        inlineSourceMap: true,
-        sourceMap: false
-      }
-    }
-  },
-  {
-    test: /\.ts$/,
-    enforce: 'post',
-    loader: 'istanbul-instrumenter-loader',
-    exclude: ['node_modules', /\.spec\.ts$/]
-  }
-];
+// Karma configuration
+// Generated on Fri Jun 28 2019 06:15:43 GMT+0200 (Central European Summer Time)
 
 module.exports = function(config) {
   config.set({
+    // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
-    frameworks: ['mocha', 'chai', 'sinon'],
-    files: ['test/**/*.ts'],
+
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['mocha', 'chai', 'sinon', 'karma-typescript'],
+
+    // list of files / patterns to load in the browser , 'test/**/*.js'
+    files: ['test/**/*.ts', 'src/**/*.ts'],
+
+    // list of files / patterns to exclude
     exclude: [],
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/**/*.ts': ['webpack']
+      '**/*.ts': ['karma-typescript'],
+      './src/*.ts': ['karma-typescript']
     },
-    webpack: {
-      devtool: 'inline-source-map',
-      module: webpackConfig.module,
-      resolve: webpackConfig.resolve
+
+    typescriptPreprocessor: {
+      options: {
+        sourceMap: true, // generate source maps
+        noResolve: false // enforce type resolution
+      },
+
+      transformPath: function(path) {
+        return path.replace(/\.ts$/, '.js');
+      }
     },
-    webpackServer: {
-      noInfo: true
-    },
-    coverageReporter: {
-      dir: 'coverage',
-      reporters: [
-        {
-          type: 'html',
-          subdir: 'report-html'
-        },
-        {
-          type: 'lcov',
-          subdir: 'report-lcov'
-        },
-        {
-          type: 'cobertura',
-          subdir: '.',
-          file: 'cobertura.txt'
-        }
-      ]
-    },
-    reporters: ['progress', 'coverage'],
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress'],
+
+    // web server port
     port: 9876,
+
+    // enable / disable colors in the output (reporters and logs)
     colors: true,
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
+
+    // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
-    browsers: ['PhantomJS'],
-    singleRun: true,
+
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['Chrome'],
+
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
     concurrency: Infinity
   });
 };
